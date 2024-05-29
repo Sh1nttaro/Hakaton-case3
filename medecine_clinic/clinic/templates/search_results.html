@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Результаты поиска
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Результаты поиска для "{{ query }}"</h1>
+
+        <h2>Врачи</h2>
+        <ul>
+            {% for doctor in doctors %}
+                <li>{{ doctor.name }}</li>
+            {% empty %}
+                <li>Нет результатов</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Услуги</h2>
+        <ul>
+            {% for service in services %}
+                <li>{{ service.name }}</li>
+            {% empty %}
+                <li>Нет результатов</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Медицинский сайт{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="{% static 'images/logo.png' %}" alt="Логотип">
+            </div>
+             <form action="{% url 'search' %}" method="GET" class="search-form">
+                <input type="text" name="query" placeholder="Поиск по врачам или услугам">
+                <button type="submit">Найти</button>
+            </form>
+            <div class="contact-info">
+                <p>+7 (3452) 79-68-46</p>
+                <p>+7 (3452) 69-08-00</p>
+            </div>
+            <div class="nav">
+                <nav>
+                    <ul>
+                        <li><a href="#">Услуги</a>
+                            <ul class="submenu">
+                                 <li><a href="{% url 'clinic' %}">Клиника</a></li>
+                                 <li><a href="{% url 'dentistry' %}">Стоматология</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Цены</a></li>
+                        <li><a href="#">Врачи</a></li>
+                        <li><a href="#">Информация</a></li>
+                        <li><a href="{% url 'faq' %}">Вопросы/ответы</a></li>
+                        <li><a href="{% url 'reviews' %}">Отзывы</a></li>
+                        <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                        <li><a href="{% url 'vacancies' %}">Вакансии</a></li>
+                        <li><a href="{% url 'tips' %}">Полезные советы</a></li>
+                        <li><a href="{% url 'login' %}">Войти в ЛК</a></li>
+                        <li><a href="{% url 'appointment' %}" class="online-appointment">Онлайн запись</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Медицинский университет. Все права защищены.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var servicesLink = document.querySelector('.services-link');
+            var servicesDropdown = document.getElementById('services-dropdown');
+
+            servicesLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                servicesDropdown.classList.toggle('show');
+            });
+
+            window.addEventListener('click', function(event) {
+                if (!event.target.matches('.services-link')) {
+                    servicesDropdown.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Вопросы/ответы{% endblock %}
+
+{% block content %}
+<div class="faq">
+    <div class="container">
+        <h2>Вопросы/ответы</h2>
+        {% for faq in faqs %}
+        <div class="faq-item">
+            <h3>Вопрос: {{ faq.question }}</h3>
+            <p>Ответ: {{ faq.answer }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
